@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tentang Aplikasi</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      padding: 40px 20px;
+      background-color: #f9f9f9;
+      color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+    }
+
+    h1 {
+      margin-top: 20px;
+      margin-bottom: 10px;
+      color: #2c3e50;
+    }
+
+    h2 {
+      color: #2980b9;
+      margin-top: 30px;
+      margin-bottom: 10px;
+    }
+
+    .info-app-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .btn-update {
+      background-color: #3498db;
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      font-size: 18px;
+      font-weight: bold;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+      margin-top: 20px;
+    }
+
+    .btn-update:hover {
+      transform: scale(1.05);
+      background-color: #1d6fa5;
+    }
+
+    .loading {
+      margin-top: 20px;
+      display: none;
+    }
+
+    .loading-bar {
+      background-color: #3498db;
+      height: 10px;
+      width: 0;
+      transition: width 0.3s ease;
+    }
+
+    .center {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .update-info {
+      margin-top: 10px;
+    }
+
+    .loading-bar {
+      width: 0;
+      height: 6px;
+      background: linear-gradient(90deg, rgba(52, 152, 219, 1) 0%, rgba(26, 188, 156, 1) 100%);
+      border-radius: 4px;
+      margin-top: 10px;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    /* Mengatur ul untuk tampilkan versi di tengah */
+    ul {
+      display: inline-block;
+      list-style: none;
+      padding: 0;
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    ul li {
+      text-align: center;
+      margin-bottom: 8px;
+    }
+
+    /* Mengatur agar versi tetap berada di tengah */
+    .current-version {
+      display: block;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <section class="info-app-container">
+    <h2>Informasi Aplikasi</h2>
+
+    <p>
+      Website ini merupakan platform digital yang dirancang untuk memberikan kemudahan dan kenyamanan dalam mengakses informasi serta layanan kami. Kami terus melakukan pembaruan untuk meningkatkan performa, keamanan, dan tampilan antarmuka yang lebih ramah pengguna.
+    </p>
+
+    <h3>🔄 Versi Saat Ini</h3>
+    <ul>
+      <li><strong>Versi:</strong> <span id="current-version">2.1.0</span></li>
+      <li><strong>Tanggal Rilis:</strong> 12 Mei 2025</li>
+      <li><strong>Status:</strong> Stabil & Live</li>
+    </ul>
+
+    <h3>🚀 Fitur Terbaru</h3>
+    <div>
+      <p>Tampilan baru yang lebih responsif dan ringan</p>
+      <p>Animasi interaktif pada halaman Tim Kami</p>
+      <p>Struktur modular yang memungkinkan update lebih mudah</p>
+      <p>Dukungan tautan sosial media anggota tim</p>
+      <p>Sistem keamanan login dan pendaftaran lebih kuat</p>
+    </div>
+
+    <h3>🎯 Tujuan Pengembangan</h3>
+    <p>
+      Kami membangun aplikasi ini untuk meningkatkan efisiensi komunikasi, memperluas jangkauan informasi, serta membangun ekosistem digital yang terintegrasi dan adaptif terhadap kebutuhan pengguna.
+    </p>
+
+    <div class="center">
+      <button class="btn-update" onclick="checkForUpdate()">Update Sekarang</button>
+      <div class="update-info" id="update-message"></div>
+      <div class="loading" id="loading-message">
+        <p>🚀 Proses Update sedang berjalan... <span id="loading-status">0%</span></p>
+        <div class="loading-bar" id="loading-bar"></div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    function checkForUpdate() {
+      const currentVersion = document.getElementById("current-version").textContent;
+
+      // Versi terbaru dari server (untuk simulasi)
+      const latestVersion = "2.2.0"; 
+
+      const message = document.getElementById("update-message");
+      const loadingMessage = document.getElementById("loading-message");
+      const loadingBar = document.getElementById("loading-bar");
+      const loadingStatus = document.getElementById("loading-status");
+
+      // Menyembunyikan tombol update dan menampilkan animasi loading
+      document.querySelector(".btn-update").style.display = "none";
+      loadingMessage.style.display = "block";
+
+      if (currentVersion !== latestVersion) {
+        message.style.display = "none"; // Menyembunyikan pesan update
+        // Simulasi proses update dengan animasi progres
+        let progress = 0;
+        const interval = setInterval(function () {
+          if (progress < 100) {
+            progress += 2; // Menambah progress
+            loadingBar.style.width = progress + "%";
+            loadingStatus.textContent = progress + "%";
+          } else {
+            clearInterval(interval);
+            updateCompleted();
+          }
+        }, 100);
+      } else {
+        message.style.display = "block";
+        message.style.color = "green";
+        message.innerHTML = "✅ Aplikasi sudah dalam versi terbaru.";
+        loadingMessage.style.display = "none";
+      }
+    }
+
+    function updateCompleted() {
+      // Menampilkan pesan bahwa update selesai
+      const message = document.getElementById("update-message");
+      message.style.display = "block";
+      message.style.color = "green";
+      message.innerHTML = "✅ Update selesai! Aplikasi kini diperbarui ke versi terbaru.";
+
+      // Menampilkan tombol kembali
+      setTimeout(() => {
+        document.querySelector(".btn-update").style.display = "inline-block";
+      }, 2000);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FAQ - Pertanyaan Umum</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f4;
+      margin: 0;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    h1 {
+      color: #2c3e50;
+      margin-bottom: 30px;
+    }
+
+    .faq {
+      width: 100%;
+      max-width: 700px;
+      text-align: left;
+    }
+
+    .faq-item {
+      background: #fff;
+      margin-bottom: 12px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+
+    .faq-question {
+      padding: 15px 20px;
+      cursor: pointer;
+      font-weight: bold;
+      background-color: #3498db;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .faq-question span.arrow {
+      font-size: 18px;
+    }
+
+    .faq-answer {
+      padding: 15px 20px;
+      background-color: #ecf0f1;
+      display: none;
+    }
+
+    .faq-answer.show {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>❓ Pertanyaan yang Sering Diajukan (FAQ)</h1>
+
+  <div class="faq" id="faqList">
+    <div class="faq-item">
+      <div class="faq-question">
+        Apa itu situs ini?
+        <span class="arrow">▼</span>
+      </div>
+      <div class="faq-answer">Ini adalah situs yang memberikan informasi dan fitur interaktif untuk pengguna seperti login, cookie, dan lainnya.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">
+        Apakah data saya aman di sini?
+        <span class="arrow">▼</span>
+      </div>
+      <div class="faq-answer">Ya, kami berkomitmen untuk menjaga privasi dan keamanan data Anda.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">
+        Bagaimana cara mengaktifkan cookie?
+        <span class="arrow">▼</span>
+      </div>
+      <div class="faq-answer">Anda bisa mengaktifkan cookie melalui halaman kebijakan cookie kami dan mengatur toggle ON.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">
+        Siapa yang bisa saya hubungi jika ada masalah?
+        <span class="arrow">▼</span>
+      </div>
+      <div class="faq-answer">Anda bisa menghubungi tim dukungan kami melalui email resmi yang tersedia di halaman kontak.</div>
+    </div>
+  </div>
+
+  <script>
+    const faqItems = document.querySelectorAll('.faq-item');
+
+    faqItems.forEach(item => {
+      const question = item.querySelector('.faq-question');
+      const answer = item.querySelector('.faq-answer');
+      const arrow = item.querySelector('.arrow');
+
+      question.addEventListener('click', () => {
+        // Tutup semua lainnya
+        faqItems.forEach(other => {
+          if (other !== item) {
+            other.querySelector('.faq-answer').classList.remove('show');
+            other.querySelector('.arrow').textContent = '▼';
+          }
+        });
+
+        // Toggle item yang diklik
+        answer.classList.toggle('show');
+        arrow.textContent = answer.classList.contains('show') ? '▲' : '▼';
+      });
+    });
+  </script>
+
+</body>
+</html>

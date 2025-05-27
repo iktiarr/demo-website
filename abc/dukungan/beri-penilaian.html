@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Beri Penilaian</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 40px;
+      background-color: #f0f4f8;
+      color: #333;
+      text-align: center;
+    }
+
+    h1 {
+      color: #2c3e50;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 16px;
+      margin-bottom: 30px;
+      max-width: 600px;
+      margin-inline: auto;
+    }
+
+    /* Rating Bintang */
+    .rating-stars {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 15px;
+    }
+
+    .rating-stars input {
+      display: none;
+    }
+
+    .rating-stars label {
+      font-size: 30px;
+      color: #ccc;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+
+    .rating-stars input:checked ~ label,
+    .rating-stars label:hover,
+    .rating-stars label:hover ~ label {
+      color: #f39c12;
+    }
+
+    .submit-btn {
+      margin-top: 10px;
+      padding: 10px 25px;
+      background-color: #3498db;
+      border: none;
+      border-radius: 8px;
+      color: #fff;
+      font-size: 15px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .submit-btn:hover {
+      background-color: #2980b9;
+    }
+
+    /* Kritik & Saran Layout */
+    .form-grid {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+      margin-top: 40px;
+    }
+
+    .form-box {
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+      width: 500px;
+      max-width: 90%;
+      padding: 25px 20px;
+      box-sizing: border-box;
+      text-align: left;
+    }
+
+    .form-box h3 {
+      text-align: center;
+      color: #2c3e50;
+      margin-bottom: 15px;
+    }
+
+    textarea {
+      width: 100%;
+      height: 120px;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+      resize: none;
+      margin-bottom: 15px;
+      background-color: #fdfdfd;
+      box-sizing: border-box;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Beri Penilaian</h1>
+  <p>
+    Kami sangat menghargai masukan Anda. Silakan beri penilaian dan saran untuk meningkatkan kualitas layanan kami.
+  </p>
+
+  <!-- Form Rating -->
+  <form action="kirim_rating.php" method="post">
+    <div class="rating-stars">
+      <input type="radio" id="star10" name="rating" value="10"><label for="star10">&#9733;</label>
+      <input type="radio" id="star9" name="rating" value="9"><label for="star9">&#9733;</label>
+      <input type="radio" id="star8" name="rating" value="8"><label for="star8">&#9733;</label>
+      <input type="radio" id="star7" name="rating" value="7"><label for="star7">&#9733;</label>
+      <input type="radio" id="star6" name="rating" value="6"><label for="star6">&#9733;</label>
+      <input type="radio" id="star5" name="rating" value="5"><label for="star5">&#9733;</label>
+      <input type="radio" id="star4" name="rating" value="4"><label for="star4">&#9733;</label>
+      <input type="radio" id="star3" name="rating" value="3"><label for="star3">&#9733;</label>
+      <input type="radio" id="star2" name="rating" value="2"><label for="star2">&#9733;</label>
+      <input type="radio" id="star1" name="rating" value="1"><label for="star1">&#9733;</label>
+    </div>
+    <button type="submit" class="submit-btn">Kirim Penilaian</button>
+  </form>
+
+  <!-- Kritik & Saran -->
+  <div class="form-grid">
+    <!-- Kritik -->
+    <div class="form-box">
+      <h3>Kritik</h3>
+      <form action="kirim_kritik.php" method="post">
+        <textarea name="kritik" placeholder="Tulis kritik Anda di sini..." required></textarea>
+        <button type="submit" class="submit-btn">Kirim Kritik</button>
+      </form>
+    </div>
+
+    <!-- Saran -->
+    <div class="form-box">
+      <h3>Saran</h3>
+      <form action="kirim_saran.php" method="post">
+        <textarea name="saran" placeholder="Tulis saran Anda di sini..." required></textarea>
+        <button type="submit" class="submit-btn">Kirim Saran</button>
+      </form>
+    </div>
+  </div>
+
+</body>
+</html>
